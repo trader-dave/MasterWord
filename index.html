@@ -1,0 +1,144 @@
+<!-- DOCTYPE html -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Master Word</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+</head>
+
+<body>
+  <h1 id="title">MasterWord</h1>
+  <div class="game_left">
+    <div class="top_part">
+      <button class="ctrl start">Start Game</button>
+      <button class="ctrl end">I Give Up!</button>
+    </div>
+    <div class="top_part">
+      <h2 class="word_len">Word Length:</h2>
+      <button class="seg4 segNotPushed">4</button>
+      <button class="seg5 segNotPushed">5</button>
+      <button class="seg6 segPushed">6</button>
+    </div>
+    <div>
+      <button class="key rw1 q">q</button>
+      <button class="key rw1 w">w</button>
+      <button class="key rw1 e">e</button>
+      <button class="key rw1 r">r</button>
+      <button class="key rw1 t">t</button>
+      <button class="key rw1 y">y</button>
+      <button class="key rw1 u">u</button>
+      <button class="key rw1 i">i</button>
+      <button class="key rw1 o">o</button>
+      <button class="key rw1 p">p</button>
+    </div>
+    <div>
+      <button class="key rw2 a">a</button>
+      <button class="key rw2 s">s</button>
+      <button class="key rw2 d">d</button>
+      <button class="key rw2 f">f</button>
+      <button class="key rw2 g">g</button>
+      <button class="key rw2 h">h</button>
+      <button class="key rw2 j">j</button>
+      <button class="key rw2 k">k</button>
+      <button class="key rw2 l">l</button>
+    </div> 
+    <div> 
+      <button class="key rw3 z">z</button>
+      <button class="key rw3 x">x</button>
+      <button class="key rw3 c">c</button>
+      <button class="key rw3 v">v</button>
+      <button class="key rw3 b">b</button>
+      <button class="key rw3 n">n</button>
+      <button class="key rw3 m">m</button>
+      <button class="key rw3 back">back</button>
+    </div>
+    <div class="top_part">
+      <button class="check">Check Word</button>
+    </div>
+    <div>
+      <h3 class="stats stat4">Stats (word length 4): </h3>
+      <h3 class="stats stat5">Stats (word length 5): </h3>
+      <h3 class="stats stat6">Stats (word length 6): </h3>
+      <h3 class="stats avg">Average Score: </h3>
+    </div>
+  </div>
+  
+  <div class="game_right">
+    <div class="r1">
+      <button class="sq row1 col1"><pre> </pre></button>
+      <button class="sq row1 col2"><pre> </pre></button>
+      <button class="sq row1 col3"><pre> </pre></button>
+      <button class="sq row1 col4"><pre> </pre></button>
+      <button class="sq row1 col5"><pre> </pre></button>
+      <button class="sq row1 col6"><pre> </pre></button>
+    </div>
+    <div class="r2">
+      <button class="sq row2 col1"></button>
+      <button class="sq row2 col2"></button>
+      <button class="sq row2 col3"></button>
+      <button class="sq row2 col4"></button>
+      <button class="sq row2 col5"></button>
+      <button class="sq row2 col6"></button>
+    </div>
+    <div class="r3">
+      <button class="sq row3 col1"></button>
+      <button class="sq row3 col2"></button>
+      <button class="sq row3 col3"></button>
+      <button class="sq row3 col4"></button>
+      <button class="sq row3 col5"></button>
+      <button class="sq row3 col6"></button>
+    </div>
+    <div class="r4">
+      <button class="sq row4 col1"></button>
+      <button class="sq row4 col2"></button>
+      <button class="sq row4 col3"></button>
+      <button class="sq row4 col4"></button>
+      <button class="sq row4 col5"></button>
+      <button class="sq row4 col6"></button>
+    </div>
+    <div class="r5">
+      <button class="sq row5 col1"></button>
+      <button class="sq row5 col2"></button>
+      <button class="sq row5 col3"></button>
+      <button class="sq row5 col4"></button>
+      <button class="sq row5 col5"></button>
+      <button class="sq row5 col6"></button>
+    </div>
+    <div class="r6">
+      <button class="sq row6 col1"></button>
+      <button class="sq row6 col2"></button>
+      <button class="sq row6 col3"></button>
+      <button class="sq row6 col4"></button>
+      <button class="sq row6 col5"></button>
+      <button class="sq row6 col6"></button>
+    </div>
+    <div class="r7">
+      <button class="sq row7 col1"></button>
+      <button class="sq row7 col2"></button>
+      <button class="sq row7 col3"></button>
+      <button class="sq row7 col4"></button>
+      <button class="sq row7 col5"></button>
+      <button class="sq row7 col6"></button>
+    </div>
+    <div class="hints">
+      <button class="hint hint1">Hint: (double letters?)</button>
+      <button class="hint hint2">Hint: (all vowels used?)</button>
+    </div>
+  </div>
+  
+  <script src=".\data\data4puzzle.js" charset="utf-8"> </script>
+  <script src=".\data\data5puzzle.js" charset="utf-8"> </script>
+  <script src=".\data\data6puzzle.js" charset="utf-8"> </script>
+  <script src=".\data\data4.js" charset="utf-8"> </script>
+  <script src=".\data\data5.js" charset="utf-8"> </script>
+  <script src=".\data\data6.js" charset="utf-8"> </script>
+  <script src="index.js" charset="utf-8"> </script>
+</body>
+
+<footer class="footer">
+  Made with ❤️ in Austin.
+</footer>
+
+</html>
