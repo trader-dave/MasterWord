@@ -163,7 +163,7 @@ footer {
 .ctrl {
   outline: none;
   border: 0.125rem solid #404B69;
-  font-size: 2.25rem;
+  font-size: 2.15rem;
   font-family: sans-serif;
   line-height: 0;
   font-weight: 600;
@@ -173,10 +173,11 @@ footer {
   text-shadow: 0rem -0.0625rem #333;
   display: inline-block;
   position: relative;
-  width: 18.75rem;
+/*  width: 18.75rem; */
+  width: 32%;
   height: 6.25rem;
   text-align: center;
-  margin: 0 10 20 10;
+  margin: 0 8 20 8;
   padding: 0.9375rem 1.5625rem;
   background-color: #020270;
   background-image: linear-gradient(#020270, #1111f3);
