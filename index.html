@@ -4,8 +4,10 @@
 <head>
   <meta charset="utf-8">
   <title>Master Word</title>
-  <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -57,13 +59,40 @@
     <div class="top_part">
       <button class="check">Check Word</button>
     </div>
-    <div>
+
+<!--  <div>
       <h3 class="stats stat4">Stats (word length 4): </h3>
       <h3 class="stats stat5">Stats (word length 5): </h3>
       <h3 class="stats stat6">Stats (word length 6): </h3>
       <h3 class="stats avg">Average Score: </h3>
     </div>
+  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- Button trigger modal -->
+<button type="button" class="check" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Show Statistics
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Player Statistics</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="stats stat4">Word length 4: </h4>
+        <h4 class="stats stat5">Word length 5: </h4>
+        <h4 class="stats stat6">Word length 6: </h4>
+        <h4 class="stats avg">Average Score: </h4>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
+</div>  </div>
   
   <div class="game_right">
     <div class="r1">
@@ -134,6 +163,7 @@
   <script src=".\data\data4.js" charset="utf-8"> </script>
   <script src=".\data\data5.js" charset="utf-8"> </script>
   <script src=".\data\data6.js" charset="utf-8"> </script>
+
   <script src="index.js" charset="utf-8"> </script>
 </body>
 

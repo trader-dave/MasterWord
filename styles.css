@@ -28,7 +28,14 @@ h3 {
   font-family: sans-serif;
   text-shadow: 0.125rem 0 #0e0280;
   text-align: left;
-  margin: 0.9375rem 0 0 3.5rem;
+  margin: 0.7rem 0 0 3.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  color: #000000;
+  font-family: sans-serif;
+  text-align: left;
 }
 
 footer {
@@ -174,7 +181,7 @@ footer {
   display: inline-block;
   position: relative;
 /*  width: 18.75rem; */
-  width: 32%;
+  width: 17.5rem;
   height: 6.25rem;
   text-align: center;
   margin: 0 8 20 8;
@@ -215,7 +222,7 @@ footer {
   width: 36.25rem;
   height: 3.125rem;
   text-align: center;
-  margin: 25 10 20 10;
+  margin: 25 10 0 10;
   background-color: #020270;
   background-image: linear-gradient(#020270, #1111f3);
 }
@@ -370,5 +377,5 @@ footer {
 }
 
 .footer {
-  margin-top: 3.125rem;
+  margin-top: 1rem;
 }

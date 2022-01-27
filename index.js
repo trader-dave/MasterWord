@@ -360,31 +360,31 @@ function updateGuess(key) {
 
 
 function updateStats() {
-    var stat4 = document.querySelector("h3.stat4");
+    var stat4 = document.querySelector("h4.stat4");
     if (gamesStarted[0] === 0)
        var rate = 0;
     else
        var rate = Math.round(gamesWon[0] / gamesStarted[0] * 100);
-    var newstr = "Stats (word length 4):  Won " + gamesWon[0] + ", Started " + gamesStarted[0] + " (" + rate + "%)" + " Hints: " + totalHints[0]
+    var newstr = "Word length 4: Won " + gamesWon[0] + ", Started " + gamesStarted[0] + " (" + rate + "%)" + " Hints: " + totalHints[0]
     stat4.innerHTML = newstr;
 
-    var stat5 = document.querySelector("h3.stat5");
+    var stat5 = document.querySelector("h4.stat5");
     if (gamesStarted[1] === 0)
        var rate = 0;
     else
     var rate = Math.round(gamesWon[1] / gamesStarted[1] * 100);
-    var newstr = "Stats (word length 5):  Won " + gamesWon[1] + ", Started " + gamesStarted[1] + " (" + rate + "%)" + " Hints: " + totalHints[1]
+    var newstr = "Word length 5: Won " + gamesWon[1] + ", Started " + gamesStarted[1] + " (" + rate + "%)" + " Hints: " + totalHints[1]
     stat5.innerHTML = newstr;
 
-    var stat6 = document.querySelector("h3.stat6");
+    var stat6 = document.querySelector("h4.stat6");
     if (gamesStarted[2] === 0)
        var rate = 0;
     else
     var rate = Math.round(gamesWon[2] / gamesStarted[2] * 100);
-    var newstr = "Stats (word length 6):  Won " + gamesWon[2] + ", Started " + gamesStarted[2] + " (" + rate + "%)" + " Hints: " + totalHints[2]
+    var newstr = "Word length 6: Won " + gamesWon[2] + ", Started " + gamesStarted[2] + " (" + rate + "%)" + " Hints: " + totalHints[2]
     stat6.innerHTML = newstr;
 
-    var avg = document.querySelector("h3.avg");
+    var avg = document.querySelector("h4.avg");
     var starts = 0;
     var wins   = 0;
     for (idx = 0; idx < 3; idx++) {
@@ -835,7 +835,7 @@ function readLocalStorage() {
     else
         return false;
 }
-
+  
 
 /***** Functions, used to access online dictionaries: *****/
 /* They are not currently used since the switch to internal word lists. */
