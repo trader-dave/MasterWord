@@ -358,13 +358,13 @@ footer {
   font-family: sans-serif;
   line-height: 0;
   font-weight: 400;
-  color: 0;
+  color: #a0a0a0;
   border-radius: 0.3125rem;
   box-shadow: 0rem 0.0625rem 0.25rem -0.125rem #333;
-  text-shadow: 0rem -0.0625rem #333;
+  text-shadow: 0rem -0.0625rem rgb(31, 30, 30);
   display: inline-block;
   position: relative;
-  width: 24.875rem;
+  width: 25rem;
   height: 3.125rem;
   text-align: left;
   margin: 15 10 5 10;

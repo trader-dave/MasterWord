@@ -554,7 +554,10 @@ function updateGameScreen(newWordLen) {
     prevCols = wordLen;
     prevRows = numRows;
     wordLen  = newWordLen;
-    numRows  = newWordLen + 1;
+    if (newWordLen == 6)
+        numRows = 7;
+    else
+        numRows = 6;
     adjustSegButtons();
     adjustGameBoard();
 }
@@ -724,12 +727,12 @@ function adjustGameBoard() {
     }
 
     //Adjust width of hint buttons
-    var sqBtn = document.querySelector("button.sq"); //find the 1st one
-    var wid1 = sqBtn.offsetWidth; //width + padding + border
-    var wid2 = (wid1 * wordLen) + (12 * (wordLen-1)); 
-    for (var idx = 0; idx < hints.length; idx++) {
-        hints[idx].style.width = wid2;
-    }
+    // var sqBtn = document.querySelector("button.sq"); //find the 1st one
+    // var wid1 = sqBtn.offsetWidth; //width + padding + border
+    // var wid2 = (wid1 * wordLen) + (12 * (wordLen-1)); 
+    // for (var idx = 0; idx < hints.length; idx++) {
+    //     hints[idx].style.width = wid2;
+    // }
 }
 
 
