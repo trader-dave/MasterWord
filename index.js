@@ -27,6 +27,9 @@ var startBtn = document.querySelector("button.start");
 var endBtn = document.querySelector("button.end");
 var checkBtn = document.querySelector("button.check");
 var hints = document.querySelectorAll("button.hint");
+var seg6 = document.querySelector("button.seg6");
+
+var resetBtn = document.querySelector("button.reset");
 
 
 /***** Perform initialization: *****/
@@ -37,6 +40,7 @@ seg6.addEventListener("click", handleSegmentButton);
 startBtn.addEventListener("click", startGame);
 endBtn.addEventListener("click", endGame);
 checkBtn.addEventListener("click", checkWord);
+resetBtn.addEventListener("click", resetStats);
 
 if (readLocalStorage() !== true) {
     updateLocalStorage();
@@ -401,6 +405,20 @@ function updateStats() {
     score = Math.round(score * 10) / 10; //round to 1 decimal
     avg.innerHTML = "Average Score: " + score;
 
+    updateLocalStorage();
+}
+
+
+function resetStats() {
+
+    for (idx = 0; idx < 3; idx++) {
+        gamesWon[idx] = 0;
+        gamesStarted[idx] = 0;
+        totalHints[idx] = 0;
+    }
+    hintDebt = 0;
+
+    updateStats();
     updateLocalStorage();
 }
 
