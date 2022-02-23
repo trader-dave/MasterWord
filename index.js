@@ -70,7 +70,7 @@ updateStats();
 
 function handleSegmentButton() {
     if (inPlay === false) {
-        var btnNum = parseInt(this.innerHTML);
+        let btnNum = parseInt(this.innerHTML);
         if (wordLen !== btnNum)
             updateGameScreen(btnNum);
     }
@@ -82,7 +82,7 @@ function handleSegmentButton() {
 //Listen for keyboard presses
 document.addEventListener("keydown", function(event) {
     if (inPlay === true) {
-        var key = event.key;
+        let key = event.key;
         updateGuess(key);
     }
 });
@@ -90,7 +90,7 @@ document.addEventListener("keydown", function(event) {
 //Listen for [screen] button presses
 function keyButtonListener() {
     if (inPlay === true) {
-        var key = this.innerHTML;
+        let key = this.innerHTML;
         updateGuess(key);
     }
 }
@@ -98,8 +98,8 @@ function keyButtonListener() {
 //Listen for hint button presses
 function hintButtonListener() {
     if (inPlay === true) {
-        var btnText = this.innerHTML;
-        var hintText = "";
+        let btnText = this.innerHTML;
+        let hintText = "";
 
         if (this.classList.contains("hint1")) {
             currHints[0] = 1;
@@ -134,14 +134,14 @@ function startGame() {
         gamesStarted[wordLen-4] ++;
         currHints = [0, 0];
 
-        for (var idx = 1; idx <= numRows; idx ++) {
+        for (let idx = 1; idx <= numRows; idx ++) {
             resetRow(idx);
         }
 
         startBtn.classList.add("started");
         startBtn.innerHTML = "Game Started";
 
-        var title = document.querySelector("h1");
+        let title = document.querySelector("h1");
         title.innerHTML = "MasterWord";
         getNewWord();
         setKeyColor("all");
@@ -154,13 +154,13 @@ function startGame() {
 //User ends a game
 function endGame() {
     if (inPlay === true) {
-        var sound = new Audio('sounds/retro_game_over.wav');
+        let sound = new Audio('sounds/retro_game_over.wav');
         sound.play();
         if (currRow === 1) { //didn't complete the first guess; abort
             gamesStarted[wordLen-4] --;
         }
         else { //this counts in the stats
-            var title = document.querySelector("h1");
+            let title = document.querySelector("h1");
             title.innerHTML = "Aaaw! The word was " + currAnswer.toUpperCase();
         }
 
@@ -189,25 +189,28 @@ function endGameInternal() {
 //Use the internal word lists to find the solution word for this game.
 function getNewWord() {
 
+    let len = 0;
+    let idx = 0;
+
     switch (wordLen) {
        case 4:
-           var len = data4puzzle.length;
-           var idx = Math.floor(Math.random() * len);
+           len = data4puzzle.length;
+           idx = Math.floor(Math.random() * len);
            currAnswer = data4puzzle[idx];
            break;
        case 5:
-           var len = data5puzzle.length;
-           var idx = Math.floor(Math.random() * len);
+           len = data5puzzle.length;
+           idx = Math.floor(Math.random() * len);
            currAnswer = data5puzzle[idx];
            break;
        case 6:
-           var len = data6puzzle.length;
-           var idx = Math.floor(Math.random() * len);
+           len = data6puzzle.length;
+           idx = Math.floor(Math.random() * len);
            currAnswer = data6puzzle[idx];
            break;
    }
 
-   for (var idx = 0; idx < currAnswer.length; idx++) {
+   for (idx = 0; idx < currAnswer.length; idx++) {
        currAnsChar[idx] = currAnswer.slice(idx, idx+1);
    }
 }
@@ -233,9 +236,9 @@ function checkWord() {
 function isGameOver() {
 
     if (gameWon === true) {
-        var sound = new Audio('sounds/cheer_and_applause.wav');
+        let sound = new Audio('sounds/cheer_and_applause.wav');
         sound.play();
-        var title = document.querySelector("h1");
+        let title = document.querySelector("h1");
         title.innerHTML = "TADA! You Got It!!!";
         gamesWon[wordLen-4] ++;
         endGameInternal();
@@ -248,9 +251,9 @@ function isGameOver() {
         highlightCurrCell();
     }
     else { /* out of guesses - game is over */
-        var sound = new Audio('sounds/retro_game_over.wav');
+        let sound = new Audio('sounds/retro_game_over.wav');
         sound.play();
-        var title = document.querySelector("h1");
+        let title = document.querySelector("h1");
         title.innerHTML = "Oops! The word was " + currAnswer.toUpperCase();
         endGameInternal();
     }
@@ -289,9 +292,9 @@ function setCharAt(str,index,chr) {
 
 function judgeGuess() {
 
-    var correct = 0;
-    var colors  = [0, 0, 0, 0, 0, 0];
-    var workingAnswer = currAnswer;
+    let correct = 0;
+    let colors  = [0, 0, 0, 0, 0, 0];
+    let workingAnswer = currAnswer;
 
     //this is only a problem when online dictionaries fail to respond:
     if (currAnswer.length !== wordLen) {
@@ -301,8 +304,8 @@ function judgeGuess() {
     }
 
     //Check for position matches first.
-    for (var idx = 0; idx < wordLen; idx++) {
-        var letter = currGuess.slice(idx, idx+1);
+    for (let idx = 0; idx < wordLen; idx++) {
+        let letter = currGuess.slice(idx, idx+1);
         if (letter === currAnsChar[idx]) {
             colors[idx] = 1; /* position match */
             workingAnswer = setCharAt(workingAnswer, idx, '.');
@@ -311,11 +314,11 @@ function judgeGuess() {
     }
 
     //Check for mis-matches next, eliminating repeats.
-    for (var idx = 0; idx < wordLen; idx++) {
-        var letter = currGuess.slice(idx, idx+1);
+    for (let idx = 0; idx < wordLen; idx++) {
+        let letter = currGuess.slice(idx, idx+1);
         if ((colors[idx] != 1) && (workingAnswer.includes(letter))) {
             colors[idx] = 2; /* word contains it */
-            var newIdx = workingAnswer.lastIndexOf(letter);
+            let newIdx = workingAnswer.lastIndexOf(letter);
             workingAnswer = setCharAt(workingAnswer, newIdx, '.');
         }
     }
@@ -346,7 +349,7 @@ function updateGuess(key) {
         }
     }
     else {
-        var ctrlKey = key.slice(0, 4);
+        let ctrlKey = key.slice(0, 4);
         ctrlKey = ctrlKey.toLowerCase();
 
         if ((ctrlKey === "back") || (ctrlKey === "dele")) {
@@ -364,41 +367,44 @@ function updateGuess(key) {
 
 
 function updateStats() {
-    var stat4 = document.querySelector("h4.stat4");
+    let rate = 0;
+    let newstr = "";
+
+    let stat4 = document.querySelector("h4.stat4");
     if (gamesStarted[0] === 0)
-       var rate = 0;
+       rate = 0;
     else
-       var rate = Math.round(gamesWon[0] / gamesStarted[0] * 100);
-    var newstr = "Word length 4: Won " + gamesWon[0] + ", Started " + gamesStarted[0] + " (" + rate + "%)" + " Hints: " + totalHints[0]
+       rate = Math.round(gamesWon[0] / gamesStarted[0] * 100);
+    newstr = "Word length 4: Won " + gamesWon[0] + ", Started " + gamesStarted[0] + " (" + rate + "%)" + " Hints: " + totalHints[0]
     stat4.innerHTML = newstr;
 
-    var stat5 = document.querySelector("h4.stat5");
+    let stat5 = document.querySelector("h4.stat5");
     if (gamesStarted[1] === 0)
-       var rate = 0;
+       rate = 0;
     else
-    var rate = Math.round(gamesWon[1] / gamesStarted[1] * 100);
-    var newstr = "Word length 5: Won " + gamesWon[1] + ", Started " + gamesStarted[1] + " (" + rate + "%)" + " Hints: " + totalHints[1]
+       rate = Math.round(gamesWon[1] / gamesStarted[1] * 100);
+    newstr = "Word length 5: Won " + gamesWon[1] + ", Started " + gamesStarted[1] + " (" + rate + "%)" + " Hints: " + totalHints[1]
     stat5.innerHTML = newstr;
 
-    var stat6 = document.querySelector("h4.stat6");
+    let stat6 = document.querySelector("h4.stat6");
     if (gamesStarted[2] === 0)
-       var rate = 0;
+       rate = 0;
     else
-    var rate = Math.round(gamesWon[2] / gamesStarted[2] * 100);
-    var newstr = "Word length 6: Won " + gamesWon[2] + ", Started " + gamesStarted[2] + " (" + rate + "%)" + " Hints: " + totalHints[2]
+       rate = Math.round(gamesWon[2] / gamesStarted[2] * 100);
+    newstr = "Word length 6: Won " + gamesWon[2] + ", Started " + gamesStarted[2] + " (" + rate + "%)" + " Hints: " + totalHints[2]
     stat6.innerHTML = newstr;
 
-    var avg = document.querySelector("h4.avg");
-    var starts = 0;
-    var wins   = 0;
+    let avg = document.querySelector("h4.avg");
+    let starts = 0;
+    let wins   = 0;
     for (idx = 0; idx < 3; idx++) {
         wins   += gamesWon[idx];
         starts += gamesStarted[idx];
     }
 
-    var score = 0;
+    let score = 0;
     if (starts > 0) {
-        var sum = (wins * 100) - hintDebt;
+        let sum = (wins * 100) - hintDebt;
         score = (sum / starts);
     }
 
@@ -425,9 +431,9 @@ function resetStats() {
 
 function containsDoubles() {
 
-    for (var idx = 0; idx < (wordLen-1); idx++) {
-        var letter = currAnswer.slice(idx, idx+1);
-        var newIdx = currAnswer.lastIndexOf(letter);
+    for (let idx = 0; idx < (wordLen-1); idx++) {
+        let letter = currAnswer.slice(idx, idx+1);
+        let newIdx = currAnswer.lastIndexOf(letter);
         if (newIdx != idx)
             return true;
     }
@@ -439,35 +445,35 @@ function containsDoubles() {
 function allVowelsFound() {
 
     if (currAnswer.includes("a")) {
-        var btn = document.querySelector("button.a");
+        let btn = document.querySelector("button.a");
         if ((!btn.classList.contains("key_green")) &&
             (!btn.classList.contains("key_yellow")))
             return false;
     }
 
     if (currAnswer.includes("e")) {
-        var btn = document.querySelector("button.e");
+        let btn = document.querySelector("button.e");
         if ((!btn.classList.contains("key_green")) &&
             (!btn.classList.contains("key_yellow")))
             return false;
     }
 
     if (currAnswer.includes("i")) {
-        var btn = document.querySelector("button.i");
+        let btn = document.querySelector("button.i");
         if ((!btn.classList.contains("key_green")) &&
             (!btn.classList.contains("key_yellow")))
             return false;
     }
 
     if (currAnswer.includes("o")) {
-        var btn = document.querySelector("button.o");
+        let btn = document.querySelector("button.o");
         if ((!btn.classList.contains("key_green")) &&
             (!btn.classList.contains("key_yellow")))
             return false;
     }
 
     if (currAnswer.includes("u")) {
-        var btn = document.querySelector("button.u");
+        let btn = document.querySelector("button.u");
         if ((!btn.classList.contains("key_green")) &&
             (!btn.classList.contains("key_yellow")))
             return false;
@@ -479,8 +485,8 @@ function allVowelsFound() {
 
 //This function is not used (responds to online dictionary)
 function checkWordOnlineListener () {
-    var json = this.responseText;
-    var response = JSON.parse(json);
+    let json = this.responseText;
+    let response = JSON.parse(json);
 
     if (response.title === "No Definitions Found") {
         alert("Is that a word? Didn't find it.")
@@ -525,7 +531,7 @@ function resetHintButtons() {
 function setKeyColor(key, state) {
 
     if (key === "all") { //set all keys to the same class
-        for (var idx = 0; idx < keys.length; idx++) {
+        for (let idx = 0; idx < keys.length; idx++) {
             keys[idx].classList.remove("key_yellow");
             keys[idx].classList.remove("key_red");
             keys[idx].classList.remove("key_green");
@@ -544,8 +550,8 @@ function setKeyColor(key, state) {
         }
     }
     else {
-        var srch = "button." + key;
-        var btn = document.querySelector(srch);
+        let srch = "button." + key;
+        let btn = document.querySelector(srch);
 
         btn.classList.remove("key_yellow");
         btn.classList.remove("key_red");
@@ -628,8 +634,8 @@ function adjustSegButtons() {
 
 function clearCurrCell(killText) {
   if (inPlay === true) {
-    var rowStr = "button.row" + currRow;
-    var rowBtn = document.querySelectorAll(rowStr);
+    let rowStr = "button.row" + currRow;
+    let rowBtn = document.querySelectorAll(rowStr);
 
     rowBtn[currCol-1].classList.remove("sq_hilite");
     if (killText === true) {
@@ -644,8 +650,8 @@ function clearCurrCell(killText) {
 
 function setCurrCell(key) {
   if (inPlay === true) {
-      var rowStr = "button.row" + currRow;
-      var rowBtn = document.querySelectorAll(rowStr);
+      let rowStr = "button.row" + currRow;
+      let rowBtn = document.querySelectorAll(rowStr);
   
       if (currCol < wordLen) {
         rowBtn[currCol-1].classList.remove("sq_hilite");
@@ -657,8 +663,8 @@ function setCurrCell(key) {
 
 function highlightCurrCell() {
   if (inPlay === true) {
-    var rowStr = "button.row" + currRow;
-    var rowBtn = document.querySelectorAll(rowStr);
+    let rowStr = "button.row" + currRow;
+    let rowBtn = document.querySelectorAll(rowStr);
 
     rowBtn[currCol-1].classList.add("sq_hilite");
 
@@ -674,17 +680,17 @@ function adjustGameBoard() {
        
     //Need to delete rows?
     if ((prevRows > 6) && (numRows < 7)) {
-        var row7btn = document.querySelectorAll("button.row7");
+        let row7btn = document.querySelectorAll("button.row7");
 
-        for (var idx = 0; idx < prevCols; idx++) {
+        for (let idx = 0; idx < prevCols; idx++) {
           row7btn[idx].style.visibility = "hidden";
           row7btn[idx].style.display = "none";
        }
     }
     if ((prevRows > 5) && (numRows < 6)) {
-        var row6btn = document.querySelectorAll("button.row6");
+        let row6btn = document.querySelectorAll("button.row6");
 
-        for (var idx = 0; idx < prevCols; idx++) {
+        for (let idx = 0; idx < prevCols; idx++) {
             row6btn[idx].style.visibility = "hidden";
             row6btn[idx].style.display = "none";
          }
@@ -692,17 +698,17 @@ function adjustGameBoard() {
 
     //Need to add rows?
     if ((prevRows < 6) && (numRows > 5)) {
-        var row6btn = document.querySelectorAll("button.row6");
+        let row6btn = document.querySelectorAll("button.row6");
 
-        for (var idx = 0; idx < prevCols; idx++) {
+        for (let idx = 0; idx < prevCols; idx++) {
           row6btn[idx].style.visibility = "visible";
           row6btn[idx].style.display = "inline";
        }
     }
     if ((prevRows < 7) && (numRows > 6)) {
-        var row7btn = document.querySelectorAll("button.row7");
+        let row7btn = document.querySelectorAll("button.row7");
 
-        for (var idx = 0; idx < prevCols; idx++) {
+        for (let idx = 0; idx < prevCols; idx++) {
           row7btn[idx].style.visibility = "visible";
           row7btn[idx].style.display = "inline";
        }
@@ -710,17 +716,17 @@ function adjustGameBoard() {
     
     //Need to delete columns?
     if ((prevCols > 5) && (wordLen < 6)) {
-        var col6btn = document.querySelectorAll("button.col6");
+        let col6btn = document.querySelectorAll("button.col6");
 
-        for (var idx = 0; idx < numRows; idx++) {
+        for (let idx = 0; idx < numRows; idx++) {
           col6btn[idx].style.visibility = "hidden";
           col6btn[idx].style.display = "none";
        }
     }
     if ((prevCols > 4) && (wordLen < 5)) {
-        var col5btn = document.querySelectorAll("button.col5");
+        let col5btn = document.querySelectorAll("button.col5");
 
-        for (var idx = 0; idx < numRows; idx++) {
+        for (let idx = 0; idx < numRows; idx++) {
           col5btn[idx].style.visibility = "hidden";
           col5btn[idx].style.display = "none";
        }
@@ -728,27 +734,27 @@ function adjustGameBoard() {
     
     //Need to add columns?
     if ((prevCols < 5) && (wordLen > 4)) {
-        var col5btn = document.querySelectorAll("button.col5");
+        let col5btn = document.querySelectorAll("button.col5");
 
-        for (var idx = 0; idx < numRows; idx++) {
+        for (let idx = 0; idx < numRows; idx++) {
           col5btn[idx].style.visibility = "visible";
           col5btn[idx].style.display = "inline";
        }
     }
     if ((prevCols < 6) && (wordLen > 5)) {
-        var col6btn = document.querySelectorAll("button.col6");
+        let col6btn = document.querySelectorAll("button.col6");
 
-        for (var idx = 0; idx < numRows; idx++) {
+        for (let idx = 0; idx < numRows; idx++) {
           col6btn[idx].style.visibility = "visible";
           col6btn[idx].style.display = "inline";
        }
     }
 
     //Adjust width of hint buttons
-    // var sqBtn = document.querySelector("button.sq"); //find the 1st one
-    // var wid1 = sqBtn.offsetWidth; //width + padding + border
-    // var wid2 = (wid1 * wordLen) + (12 * (wordLen-1)); 
-    // for (var idx = 0; idx < hints.length; idx++) {
+    // let sqBtn = document.querySelector("button.sq"); //find the 1st one
+    // let wid1 = sqBtn.offsetWidth; //width + padding + border
+    // let wid2 = (wid1 * wordLen) + (12 * (wordLen-1)); 
+    // for (let idx = 0; idx < hints.length; idx++) {
     //     hints[idx].style.width = wid2;
     // }
 }
@@ -757,24 +763,24 @@ function adjustGameBoard() {
 function colorizeKeyboard(colors) {
 
     /* set unused first */
-    for (var idx = 0; idx < wordLen; idx++) {
-        var letter = currGuess.slice(idx, idx+1);
+    for (let idx = 0; idx < wordLen; idx++) {
+        let letter = currGuess.slice(idx, idx+1);
         if (colors[idx] === 0) {
             setKeyColor(letter, 3);
         }
     }
 
     /* set "contains it" next */
-    for (var idx = 0; idx < wordLen; idx++) {
-        var letter = currGuess.slice(idx, idx+1);
+    for (let idx = 0; idx < wordLen; idx++) {
+        let letter = currGuess.slice(idx, idx+1);
         if (colors[idx] === 2) {
             setKeyColor(letter, 1);
         }
     }
 
     /* set matched last */
-    for (var idx = 0; idx < wordLen; idx++) {
-        var letter = currGuess.slice(idx, idx+1);
+    for (let idx = 0; idx < wordLen; idx++) {
+        let letter = currGuess.slice(idx, idx+1);
         if (colors[idx] === 1) {
             setKeyColor(letter, 2);
         }
@@ -784,10 +790,10 @@ function colorizeKeyboard(colors) {
 
 function colorizeRow(colors) {
 
-    var rowStr = "button.row" + currRow;
-    var rowBtn = document.querySelectorAll(rowStr);
+    let rowStr = "button.row" + currRow;
+    let rowBtn = document.querySelectorAll(rowStr);
 
-    for (var idx = 0; idx < wordLen; idx++) {
+    for (let idx = 0; idx < wordLen; idx++) {
 
         if (colors[idx] === 1) {
             rowBtn[idx].classList.add("sq_green");
@@ -801,10 +807,10 @@ function colorizeRow(colors) {
 
 function resetRow(row) {
 
-    var rowStr = "button.row" + row;
-    var rowBtn = document.querySelectorAll(rowStr);
+    let rowStr = "button.row" + row;
+    let rowBtn = document.querySelectorAll(rowStr);
 
-    for (var idx = 0; idx < 6; idx++) {
+    for (let idx = 0; idx < 6; idx++) {
         rowBtn[idx].classList.remove("sq_green");
         rowBtn[idx].classList.remove("sq_yellow");
         rowBtn[idx].classList.remove("sq_hilite");
@@ -868,7 +874,7 @@ function checkWordErrorListener () {
 
 //Call the dictionaryapi.dev API to see if a user's guess is an actual word.
 function checkWordOnline(word) {
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.addEventListener("load", checkWordOnlineListener);
     xhttp.addEventListener("abort", checkWordErrorListener);
     xhttp.open("GET", "https://api.dictionaryapi.dev/api/v2/entries/en/" + word);
@@ -880,15 +886,15 @@ function checkWordOnline(word) {
 //Letter frequencies come from https://wikipedia.org/wiki/Letter_frequency
 function randomLetter() {
     //values as percents, a through z: (adds up to > 100%, see totalFreq)
-    var azFreq = [7.8, 2, 4, 3.8, 11, 1.4, 3, 2.3, 8.2, 0.21, 2.5, 5.3, 2.7, 7.2,
+    let azFreq = [7.8, 2, 4, 3.8, 11, 1.4, 3, 2.3, 8.2, 0.21, 2.5, 5.3, 2.7, 7.2,
                 6.1, 2.8, 0.24, 7.3, 8.7, 6.7, 3.3, 1, 0.91, 0.27, 1.6, 0.44];
-    var letters = "abcdefghijklmnopqrstuvwxyz";
-    var sum = 0;
-    var totalFreq = 100.77; //sum of above percentages
+    let letters = "abcdefghijklmnopqrstuvwxyz";
+    let sum = 0;
+    let totalFreq = 100.77; //sum of above percentages
 
-    var randVal = Math.random() * totalFreq; //adjust randVal to the total percentage scaling
+    let randVal = Math.random() * totalFreq; //adjust randVal to the total percentage scaling
 
-    for (var idx = 0; idx < 26; idx++) {
+    for (let idx = 0; idx < 26; idx++) {
         if (randVal < (sum + azFreq[idx])) {
             return(letters.slice(idx, idx+1));
         }
@@ -898,14 +904,14 @@ function randomLetter() {
 
 
 function getNewWordListener () {
-    var json = this.responseText;
-    var wordList = JSON.parse(json);
-    var numWords = wordList.length;
-    var randIdx  = Math.floor(Math.random() * numWords);
+    let json = this.responseText;
+    let wordList = JSON.parse(json);
+    let numWords = wordList.length;
+    let randIdx  = Math.floor(Math.random() * numWords);
 
     currAnswer = wordList[randIdx].word;
 
-    for (var idx = 0; idx < currAnswer.length; idx++) {
+    for (let idx = 0; idx < currAnswer.length; idx++) {
         currAnsChar[idx] = currAnswer.slice(idx, idx+1);
     }
 }
@@ -913,9 +919,9 @@ function getNewWordListener () {
 
 //Call the datamuse.com API to find a random dictionary word
 function getNewWordOnline() {
-    var firstLetter = randomLetter();
-    var word = firstLetter + "???";
-    var xhttp = new XMLHttpRequest();
+    let firstLetter = randomLetter();
+    let word = firstLetter + "???";
+    let xhttp = new XMLHttpRequest();
 
     if (wordLen === 5)
       word = word + "?";
